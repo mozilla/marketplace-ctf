@@ -1,5 +1,6 @@
 import sqlite3
 import uuid
+
 from flask import Flask, redirect, render_template, request, session
 
 DATABASE = 'the.db'
