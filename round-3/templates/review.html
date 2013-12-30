@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <title>App Checker</title>
+  <body>
+    <div class="container">
+      <h1>App Checker</h1>
+      <p>A listing of all the apps for review.</p>
+      {% for review in reviews %}
+        <h2>App for Review</h2>
+        <dl>
+          <dt>URL</dt><dd><a href="{{ review.url }}">{{ review.url }}</a></dd>
+        </dl>
+        <button class="btn btn-success">Approve</button>
+        <button class="btn btn-danger">Deny</button>
+      {% else %}
+        <h2>No reviews</h2>
+      {% endfor %}
+    </div>
+  </body>
+</html
