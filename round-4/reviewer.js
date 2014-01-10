@@ -8,7 +8,9 @@ var check_url = function(url) {
 };
 
 // Example: phantomjs reviewer.js http://localhost:5000
-page.open(system.args[1] + '/review?key=' + fs.read('secret.json'), function(status) {
+page.open(system.args[1] + '/login?key=' + fs.read('secret.json'), function(status) {
+  page.onConsoleMessage = function (msg) { console.log(msg); };
+
   var hrefs = page.evaluate(function() {
     return document.getElementsByTagName('a');
   });
