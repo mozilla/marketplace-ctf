@@ -35,7 +35,7 @@ def parse():
         session.update({'outcome': False, 'msg': 'Could not parse JSON'})
         return redirect('/')
 
-    res = cache.get('round-3:to-review')
+    res = cache.get('round-4:to-review')
     if not res:
         res = []
     res.append({'data': parsed, 'key': str(uuid.uuid4()),

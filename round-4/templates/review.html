@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <title>App Checker</title>
   <body>
     <div class="container">
@@ -14,12 +13,13 @@
           <dt>Description</dt><dd>{% autoescape false %}{{ review.data.description }}{% endautoescape %}</dd>
           <dt>Status</dt><dd>{{ review.status }}</dd>
         </dl>
-
-        <form method="post" action="/status">
-          <input type="hidden" name="key" value="{{ review.key }}">
-          <input type="submit" name="status" value="Approve" class="btn btn-success">
-          <input type="submit" name="status" value="Deny" class="btn btn-danger">
-        </form>
+        {% if review.status == 'unreviewed' %}
+          <form method="post" action="/status">
+            <input type="hidden" name="key" value="{{ review.key }}">
+            <input type="submit" name="status" value="Approve" class="btn btn-success">
+            <input type="submit" name="status" value="Deny" class="btn btn-danger">
+          </form>
+        {% endif %}
       {% else %}
         <h2>No reviews</h2>
       {% endfor %}
