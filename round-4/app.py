@@ -1,6 +1,5 @@
 import json
 import os
-import urllib
 import uuid
 
 from flask import Flask, redirect, render_template, request, session
