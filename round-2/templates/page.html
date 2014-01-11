@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  <title>Secrets</title>
+  <title>Secret app (round 2)</title>
   <body>
     <div class="container">
-    <h1>Secret app</h1>
+    <h1>Secret app (round 2)</h1>
     {% if session.get('user') %}
       <p class="alert alert-success"><strong>So logged in.</strong></p>
       <p><a href="/logout" class="btn btn-warning">Logout</a></p>
     {% else %}
     <form method="post" role="form" class="form-inline">
+        <p>Log in with your username and password. If you get it wrong, we'll
+           give you a hint.</p>
         {% if session.get('hints') %}
           <p class="alert alert-success">Password hint: <strong>{{ session.hints }}</strong></p>
         {% endif %}
