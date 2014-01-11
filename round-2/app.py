@@ -1,5 +1,6 @@
 import sqlite3
 import subprocess
+import uuid
 
 from flask import Flask, redirect, render_template, request, session
 
@@ -14,7 +15,8 @@ app = Flask(__name__)
 cmds = [
     """CREATE TABLE IF NOT EXISTS users
     (user varchar(255), password varchar(255), UNIQUE (user));""",
-    "INSERT OR IGNORE INTO users (user, password) VALUES ('admin', 'awooga');"
+    "INSERT OR IGNORE INTO users (user, password) VALUES ('admin', '%s');" %
+    uuid.uuid4()
 ]
 
 db = get_db()
