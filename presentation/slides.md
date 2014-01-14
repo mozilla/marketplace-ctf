@@ -152,3 +152,50 @@ XSS
 ```
 
 * Note: < should not be escaped, but markdown > reveal.js hates me.
+
+
+
+## Round 5
+To come
+
+
+
+
+## Round 6
+To come
+
+
+
+## Round 7
+This one is homework, give it a try if you like, not for today.
+
+
+
+
+## Security bugs
+There is a classification of security bugs.
+
+https://wiki.mozilla.org/Security_Severity_Ratings
+
+A very small portion of security bugs use this clasification, we should do that more.
+
+
+
+## By category
+- wsec-authentication: 4
+- wsec-authorization: 0
+- wsec-cookie: 1
+- wsec-crossdomain: 1
+- wsec-crypto: 1
+- *wsec-csrf: 11*
+- wsec-disclosure: 2
+- wsec-dos: 1
+- wsec-errorhandling: 1
+- wsec-impersonation: 4
+- wsec-injection: 0
+- wsec-input: 0
+- wsec-logging: 0
+- wsec-other: 6
+- wsec-session: 1
+- wsec-sqli: 0
+- *wsec-xss: 33*
