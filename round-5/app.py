@@ -33,9 +33,9 @@ def index():
 @app.route('/', methods=['POST'])
 def login():
     db = get_db()
-    sql = "SELECT user FROM users WHERE user = '%s' AND password = '%s'" % (
-        request.form['user'], request.form['password'])
-    res = db.cursor().execute(sql).fetchone()
+    sql = "SELECT user FROM users WHERE user = ? AND password = ?"
+    user, password = request.form['user'], request.form['password']
+    res = (db.cursor().execute(sql, (user, password)).fetchone())
     if res:
         session['user'] = res[0]
 
@@ -49,6 +49,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.secret_key = str(uuid.uuid4())
+    app.secret_key = 'is-it-really-bad-if-this-is-shared'
     app.debug = True
     app.run()

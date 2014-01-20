@@ -56,6 +56,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'you-thought-round-1-was-bad?'
+    app.secret_key = str(uuid.uuid4())
     app.debug = True
     app.run()

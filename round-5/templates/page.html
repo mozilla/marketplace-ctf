@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <title>Secret app (round 5)</title>
+  <body>
+    <div class="container">
+    <h1>Secret app (round 5)</h1>
+    {% if user %}
+      <p class="alert alert-success"><strong>So logged in.</strong></p>
+      <p><a href="/logout" class="btn btn-warning">Logout</a></p>
+    {% else %}
+      <p>Log in with your username and password.</p>
+      <form method="post" role="form" class="form-inline">
+        <div class="form-group">
+          <input name="user" class="form-control" placeholder="user">
+          </div>
+        <div class="form-group">
+          <input name="password" class="form-control" placeholder="password">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    {% endif %}
+    </div>
+  </body>
+</html>

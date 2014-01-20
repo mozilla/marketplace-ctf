@@ -22,6 +22,16 @@
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
+    <style media="screen" type="text/css">
+      body { background: radial-gradient(circle farthest-corner at center center , rgb(35, 40, 45) 0%, rgb(0, 0, 0) 100%) repeat scroll 0% 0% rgb(35, 35, 35); }
+      .reveal h2 { text-transform: none; }
+      .reveal { color: rgb(200, 200, 200); }
+      .reveal strong { color: white; font-weight: 1000; }
+      .reveal pre { font-size: 75%; box-shadow: none; }
+      .reveal pre code { max-height: none; overflow: visible; }
+      pre code { background: none; }
+    </style>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->

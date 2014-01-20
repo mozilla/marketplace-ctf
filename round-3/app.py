@@ -51,6 +51,6 @@ def clear():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'this-is-almost-the-round-in-the-middle'
+    app.secret_key = str(uuid.uuid4())
     app.debug = True
     app.run()
