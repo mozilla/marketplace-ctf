@@ -4,6 +4,8 @@ import uuid
 from flask import Flask, redirect, render_template, request, session
 
 DATABASE = 'the.db'
+URL = 'https://people.mozilla.org/~amckay/app.html'
+TIMEOUT = '100'
 
 
 def get_db():
@@ -26,7 +28,8 @@ for cmd in cmds:
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('page.html', user=session.get('user'))
+    return render_template('page.html',  user=session.get('user'),
+                           url=URL, timeout=TIMEOUT)
 
 
 @app.route('/', methods=['POST'])
@@ -48,6 +51,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'is-it-really-bad-if-this-is-shared'
+    app.secret_key = str(uuid.uuid4())
     app.debug = True
     app.run()

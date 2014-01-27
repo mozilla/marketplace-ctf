@@ -14,7 +14,6 @@ app = Flask(__name__)
 cmds = [
     """CREATE TABLE IF NOT EXISTS users
     (user varchar(255), password varchar(255), UNIQUE (user));""",
-    # You could login using the password below, but thats not the point.
     "INSERT OR IGNORE INTO users (user, password) VALUES ('admin', '%s');" %
     uuid.uuid4()
 ]

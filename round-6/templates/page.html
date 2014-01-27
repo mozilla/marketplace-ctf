@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <title>Secret app (round 6)</title>
+</head>
+  <body>
+    <div class="container">
+    <h1>Secret app (round 6)</h1>
+    <p style="display: none"><span class="label label-success">Success</span> Password retrieved from password manager</p>
+    {% if user %}
+      <p class="alert alert-success"><strong>So logged in.</strong></p>
+      <p><a href="/logout" class="btn btn-warning">Logout</a></p>
+    {% else %}
+      <p>Log in with your username and password.</p>
+      <form method="post" role="form" class="form-inline">
+        <div class="form-group">
+          <input id="user" name="user" class="form-control" placeholder="user">
+          </div>
+        <div class="form-group">
+          <input id="password" type="password" name="password" class="form-control" placeholder="password">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <p><a href="#">Lookup using password manager.</a></p>
+      </form>
+      <script type="text/javascript">
+        var getPassword = function() {
+          popup.postMessage(document.domain, '*');
+        };
+
+        var receiveMessage = function(event) {
+          if (event.data) {
+            var data = JSON.parse(event.data);
+            for (var k in data) {
+              var el = $('#' + data[k].name);
+              if (el) {
+                el.val(data[k].value);
+              }
+            }
+          }
+        };
+
+        $('a').click(function() {
+          popup = window.open('{{ url }}',
+              'pwmanager', 'width=400,height=300,resizable,scrollbars=yes,status=1');
+
+          // Because we can't detect on load events.
+          window.setTimeout(getPassword, {{ timeout }});
+          window.addEventListener("message", receiveMessage, false);
+        });
+      </script>
+    {% endif %}
+
+    </div>
+  </body>
+</html>
