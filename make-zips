@@ -1,0 +1,7 @@
+mkdir zips
+zip -r zips/round-1.zip round-1/app.py round-1/templates
+zip -r zips/round-2.zip round-2/app.py round-2/templates round-2/hints
+zip -r zips/round-3.zip round-3/app.py round-3/reviewer.js round-3/templates
+zip -r zips/round-4.zip round-4/app.py round-4/reviewer.js round-4/templates
+zip -r zips/round-5.zip round-5/app.py round-5/templates
+zip -r zips/round-6.zip round-6/app.py round-6/templates round-6/app
