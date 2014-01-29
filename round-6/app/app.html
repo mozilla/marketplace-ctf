@@ -28,7 +28,7 @@
         $('#update').click(function(event) {
           localStorage.setItem($('#domain').val(), JSON.stringify($('form').serializeArray()));
           $('form').trigger('reset');
-          event.stopPropogation();
+          return false;
         });
       });
 

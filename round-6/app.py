@@ -5,7 +5,7 @@ from flask import Flask, redirect, render_template, request, session
 
 DATABASE = 'the.db'
 URL = 'http://www.agmweb.ca/files/app.html'
-TIMEOUT = '100'
+TIMEOUT = '1000'
 
 
 def get_db():
