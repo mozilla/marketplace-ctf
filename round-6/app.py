@@ -4,7 +4,7 @@ import uuid
 from flask import Flask, redirect, render_template, request, session
 
 DATABASE = 'the.db'
-URL = 'https://people.mozilla.org/~amckay/app.html'
+URL = 'http://www.agmweb.ca/files/app.html'
 TIMEOUT = '100'
 
 
