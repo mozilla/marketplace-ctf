@@ -9,7 +9,7 @@
       {% for review in reviews %}
         <h2>App for Review</h2>
         <dl>
-          <dt>URL</dt><dd><a href="{{ review.url }}">{{ review.data.url }}</a></dd>
+          <dt>URL</dt><dd><a href="{{ review.data.url }}">{{ review.data.url }}</a></dd>
           <dt>Description</dt><dd>{% autoescape false %}{{ review.data.description }}{% endautoescape %}</dd>
           <dt>Status</dt><dd>{{ review.status }}</dd>
         </dl>
