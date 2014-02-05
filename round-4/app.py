@@ -1,3 +1,4 @@
+import functools
 import json
 import os
 import uuid
@@ -14,6 +15,7 @@ if not os.path.exists('secret.json'):
 
 
 def logged_in(f):
+    @functools.wraps(f)
     def wrapper():
         if not session.get('user'):
             session.update({'msg': 'Not allowed', 'user': False})
@@ -46,16 +48,16 @@ def parse():
 
 
 
-@logged_in
 @app.route('/review', methods=['GET'])
+@logged_in
 def review():
     return render_template('review.html', session=session,
                            reviews=cache.get('round-4:to-review') or [],
                            request=request)
 
 
-@logged_in
 @app.route('/status', methods=['POST'])
+@logged_in
 def status():
     key = request.form.get('key')
     reviews = cache.get('round-4:to-review') or []
